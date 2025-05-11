@@ -52,9 +52,9 @@ def main():
         monitor="valid/loss", patience=3, verbose=True, mode="min"
     )
 
-    wandb_logger = WandbLogger(project="MLOps Basics", entity="raviraja")
+    wandb_logger = WandbLogger(project="MyPrac01", entity="ysjay-cbnu")
     trainer = pl.Trainer(
-        max_epochs=1,
+        max_epochs=5,
         logger=wandb_logger,
         callbacks=[checkpoint_callback, SamplesVisualisationLogger(cola_data), early_stopping_callback],
         log_every_n_steps=10,

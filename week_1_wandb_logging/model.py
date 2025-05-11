@@ -83,7 +83,8 @@ class ColaModel(pl.LightningModule):
         self.logger.experiment.log(
             {
                 "conf": wandb.plot.confusion_matrix(
-                    probs=logits.numpy(), y_true=labels.numpy()
+                    probs=logits.numpy(), 
+                    y_true=labels.numpy()
                 )
             }
         )

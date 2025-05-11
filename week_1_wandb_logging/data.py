@@ -15,8 +15,10 @@ class DataModule(pl.LightningDataModule):
 
     def prepare_data(self):
         cola_dataset = load_dataset("glue", "cola")
-        self.train_data = cola_dataset["train"]
-        self.val_data = cola_dataset["validation"]
+        self.train_data = cola_dataset["train"].train_test_split(test_size=0.1, shuffle=True, seed=42)["test"]
+        self.val_data = cola_dataset["validation"].train_test_split(test_size=0.1, shuffle=True, seed=42)["test"]
+        print("train data shape:", self.train_data.shape)
+        print("val data shape:", self.val_data.shape)
 
     def tokenize_data(self, example):
         return self.tokenizer(
